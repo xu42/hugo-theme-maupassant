@@ -1,8 +1,8 @@
 <footer id="footer">
-    <div class="container">
-        &copy; {{ now.Format "2006" }} <a href="{{ .Site.BaseURL | absURL }}">{{ .Site.Title }}</a>.
+    <div>
+        &copy; {{ now.Format "2006" }} <a href="{{ .Site.BaseURL | absURL }}">{{ .Site.Title }} By {{ .Site.Author.name }}</a>
         {{ if .Site.Params.beian }}
-        <a rel="nofollow noreferer noopener" href="http://www.beian.miit.gov.cn" target="_blank">{{ .Site.Params.beian }}</a>.
+        | <a rel="nofollow" target="_blank" href="http://www.beian.miit.gov.cn/">{{.Site.Params.beian}}</a>
         {{ end }}
         <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Powered by Hugo</a>
         <a rel="nofollow noreferer noopener" href="https://github.com/rujews/maupassant-hugo"
@@ -69,7 +69,7 @@
             })();
         </script>
     {{- end -}}
-    
+
     <!-- sequence必须要在flow加载之后，否则sequence渲染不成功，原因待分析 -->
     <!-- js-sequence-diagrams -->
     {{- if and (or .Params.sequenceDiagrams.enable (and .Site.Params.sequenceDiagrams.enable (ne .Params.sequenceDiagrams.enable false))) (or .IsPage .IsHome) -}}
@@ -105,7 +105,7 @@
         })();
         </script>
     {{- end -}}
-    
+
     <script type="text/javascript">
         window.MathJax = {
             tex2jax: {
@@ -114,7 +114,11 @@
                 }
             };
     </script>
-    <script src='https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+    {{- if .Site.Params.fancybox -}}
+        <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    {{- end -}}
 {{ end }}
 
 <a id="rocket" href="#top"></a>

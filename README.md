@@ -36,6 +36,9 @@ Maupassant theme, ported to Hugo.
 20. 部分自定义的shortcode
 21. 文章自定义摘要
 22. 自定义广告支持
+23. 自定义备案信息
+24. 自定义图片CDN
+25. 图片点击放大
 
 ## 下载安装
 
@@ -202,6 +205,38 @@ type: archives
 
 `content/archives/index.md`表示在`content/archives/`目录下的`index.md`文件
 
+#### 添加备案信息
+
+现在网站要求添加备案信息，本主题也进行了支持，使用方式非常简单，在`config.toml`的`params`配置中添加如下设置：
+
+```toml
+[params]
+  beian = "粤ICP备XXXXXXX号-1"
+```
+
+以上配置中的备案信息要换成自己的
+
+#### 图片点击放大
+
+将会引入jquery.js 和 fancybox 的css和js
+
+```toml
+[params]
+  fancybox = true
+```
+
+#### 图片CDN
+
+将会在mark中引入的图片src前面加上设置的host, 有http前缀的路径不会在前面加入host
+注意: 路径后面不要带/ 
+> 可直接使用jsdelivr加速 后面跟上github仓库即可 
+
+```toml
+[params.image_cdn]
+    enable = true
+    Host = "https://cdn.jsdelivr.net/gh/user/user.github.io"
+```
+
 #### Disqus
 
 该主题支持Disqus评论，如果要启用Disqus，可以在`config.toml`里添加如下配置即可.
@@ -298,7 +333,9 @@ disablePathToLower = true
 ```
 
 * youku（youku.html）
+
 #### 绘图支持
+
 - 序列图(使用[js-sequence](https://bramp.github.io/js-sequence-diagrams/))
   1. 全局使用，在`config.toml`中添加如下配置
   
